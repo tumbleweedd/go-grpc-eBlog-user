@@ -1,0 +1,94 @@
+syntax = "proto3";
+
+package order;
+
+option go_package = "pkg/pb";
+
+service PostService {
+  rpc GetAllPosts(GetAllPostsRequest) returns (GetAllPostsResponse) {}
+  rpc GetPostById(GetPostByIdRequest) returns (GetPostByIdResponse) {}
+  rpc GetAllPostsByUserId(GetAllPostsByUserIdRequest) returns (GetAllPostsByUserIdResponse) {}
+  rpc CreateNewPost(CreateNewPostRequest) returns (CreateNewPostResponse) {}
+  rpc UpdatePost(UpdatePostRequest) returns (UpdatePostResponse) {}
+  rpc DeletePost(DeletePostRequest) returns (DeletePostResponse) {}
+}
+
+//GetAllPosts
+
+message GetAllPostsRequest {}
+
+message PostData{
+  string body = 1;
+  string head = 2;
+  string category = 3;
+  repeated string tags = 4;
+}
+
+message GetAllPostsResponse {
+  int64 status = 1;
+  string error = 2;
+  repeated PostData data = 3;
+}
+
+// GetPostById
+
+message GetPostByIdRequest {
+  int64 postId = 1;
+}
+
+message GetPostByIdResponse {
+  int64 status = 1;
+  string error = 2;
+  PostData data = 3;
+}
+
+// GetAllPostsByUserId
+
+message GetAllPostsByUserIdRequest {
+  int64 userId = 1;
+}
+
+message GetAllPostsByUserIdResponse {
+  int64 status = 1;
+  string error = 2;
+  repeated PostData data = 3;
+}
+
+// CreateNewPost
+
+message CreateNewPostRequest {
+  PostData data = 1;
+  int64 userId = 2;
+
+}
+
+message CreateNewPostResponse {
+  int64 status = 1;
+  string error = 2;
+  string head = 3;
+  string body = 4;
+}
+
+// UpdatePost
+
+message UpdatePostRequest {
+  int64 postId = 1;
+  PostData data = 2;
+}
+
+message UpdatePostResponse {
+  int64 status = 1;
+  string error = 2;
+}
+
+// DeletePost
+
+message DeletePostRequest {
+  int64 postId = 1;
+}
+
+message DeletePostResponse {
+  int64 status = 1;
+  string error = 2;
+}
+

@@ -1,0 +1,10 @@
+port: ":50052"
+post_svc_url: "localhost:50053"
+
+db:
+  username: "postgres"
+  host: "localhost"
+  port: "5432"
+  dbname: "eBlog_auth"
+  password: "gaga565"
+  sslmode: "disable"

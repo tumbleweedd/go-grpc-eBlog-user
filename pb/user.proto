@@ -1,0 +1,144 @@
+syntax = "proto3";
+
+package order;
+
+option go_package = "pkg/user/pb";
+
+service UserService {
+  rpc GetUserList(GetUserListRequest) returns (GetUserListResponse) {}
+  rpc GetLoggedUserProfile(GetLoggedUserProfileRequest) returns (GetLoggedUserProfileResponse) {}
+  rpc GetUserProfile(GetUserProfileRequest) returns (GetUserProfileResponse) {}
+  rpc AddUser(AddUserRequest) returns (AddUserResponse) {}
+  rpc GiveRole(GiveRoleRequest) returns (GiveRoleResponse) {}
+  rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse) {}
+  rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse) {}
+  rpc GetUserPosts(GetUserPostsRequest) returns (GetUserPostsResponse) {}
+
+}
+
+//GetAllUsers
+
+message GetUserListRequest {}
+
+message UserData {
+  string name = 1;
+  string lastname = 2;
+  string username = 3;
+  string email = 4;
+}
+
+message GetUserListResponse {
+  int64 status = 1;
+  string error = 2;
+  repeated UserData data = 3;
+}
+
+// GetLoggedUser
+
+message GetLoggedUserProfileRequest {
+  int64 userId = 1;
+}
+
+message GetLoggedUserProfileResponse {
+  int64 status = 1;
+  string error = 2;
+  UserData data = 3;
+}
+
+// GetUserProfile
+
+message GetUserProfileRequest {
+  string username = 1;
+}
+
+message GetUserProfileResponse {
+  int64 status = 1;
+  string error = 2;
+  UserData data = 3;
+}
+
+// AddUserForAdmin
+
+message UserForAdminData {
+  string name = 1;
+  string lastname = 2;
+  string  username = 3;
+  string password = 4;
+  string email = 5;
+  string role = 6;
+  bool isAccountNonLocked = 7;
+}
+
+message AddUserRequest {
+  int64 currentUserId = 1;
+  UserForAdminData data = 2;
+}
+
+message AddUserResponse {
+  int64 userId = 1;
+  int64 status = 2;
+  string error = 3;
+}
+
+// GiveRole
+
+message GiveRoleRequest {
+  string username = 1;
+}
+
+message GiveRoleResponse {
+  int64 status = 1;
+  string error = 2;
+}
+
+// DeleteUser
+
+message DeleteUserRequest {
+  string username = 1;
+  int64 userId = 2;
+
+}
+
+message DeleteUserResponse {
+  int64 status = 1;
+  string error = 2;
+}
+
+// UpdateUser
+
+message UserUpdateData {
+  string username = 1;
+  string email = 2;
+  string password = 3;
+}
+
+message UpdateUserRequest{
+  string username = 1;
+  UserUpdateData data = 2;
+  int64 userId = 3;
+}
+
+message UpdateUserResponse {
+  int64 status = 1;
+  string error = 2;
+}
+
+// GetUserPost
+
+
+message Post {
+  string body = 1;
+  string head = 2;
+  string category = 3;
+  repeated string tags = 4;
+}
+
+message GetUserPostsRequest {
+  string username = 1;
+}
+
+message GetUserPostsResponse {
+  int64 status = 1;
+  string error = 2;
+  repeated Post data = 3;
+}
