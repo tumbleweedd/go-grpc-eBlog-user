@@ -13,7 +13,7 @@ type User interface {
 	GetUserProfile(username string) (*models.UserDTO, error)
 	DeleteUser(username string) error
 	UpdateUser(username string, user models.UserUpdate) error
-	GetUserIdByUsername(username string) (int, error)
+	GetUserIdByUsername(username string) (models.User, error)
 }
 
 type Repository struct {

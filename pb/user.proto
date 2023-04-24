@@ -13,10 +13,24 @@ service UserService {
   rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse) {}
   rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse) {}
   rpc GetUserPosts(GetUserPostsRequest) returns (GetUserPostsResponse) {}
+  rpc GetUserIdByUsername(GetUserIdByUsernameRequest) returns (GetUserIdByUsernameResponse) {}
 
 }
 
-//GetAllUsers
+// GetUserIdByUsername
+
+message GetUserIdByUsernameRequest {
+  string username = 3;
+}
+
+message GetUserIdByUsernameResponse {
+  int64 status = 1;
+  string error = 2;
+  int64 userId = 3;
+
+}
+
+// GetAllUsers
 
 message GetUserListRequest {}
 

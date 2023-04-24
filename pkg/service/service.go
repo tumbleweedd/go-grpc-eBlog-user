@@ -16,6 +16,7 @@ type User interface {
 	DeleteUser(ctx context.Context, req *pb.DeleteUserRequest) (*pb.DeleteUserResponse, error)
 	UpdateUser(ctx context.Context, req *pb.UpdateUserRequest) (*pb.UpdateUserResponse, error)
 	GetUserPosts(ctx context.Context, req *pb.GetUserPostsRequest) (*pb.GetUserPostsResponse, error)
+	GetUserIdByUsername(ctx context.Context, request *pb.GetUserIdByUsernameRequest) (*pb.GetUserIdByUsernameResponse, error)
 }
 
 type Service struct {

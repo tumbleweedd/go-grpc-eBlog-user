@@ -22,6 +22,22 @@ type UserService struct {
 	postService    client.PostServiceClient
 }
 
+func (userService *UserService) GetUserIdByUsername(ctx context.Context, request *pb.GetUserIdByUsernameRequest) (*pb.GetUserIdByUsernameResponse, error) {
+	user, err := userService.userRepository.GetUserIdByUsername(request.GetUsername())
+
+	if err != nil {
+		return &pb.GetUserIdByUsernameResponse{
+			Status: http.StatusInternalServerError,
+			Error:  err.Error(),
+		}, nil
+	}
+
+	return &pb.GetUserIdByUsernameResponse{
+		Status: http.StatusOK,
+		UserId: int64(user.Id),
+	}, nil
+}
+
 func NewUserService(userRepo repository.User, postSvc client.PostServiceClient) *UserService {
 	return &UserService{
 		userRepository: userRepo,
@@ -39,7 +55,7 @@ func (userService *UserService) GetUserPosts(ctx context.Context, req *pb.GetUse
 		}, nil
 	}
 
-	userPosts, err := userService.postService.GetAllPostsByUserId(id)
+	userPosts, err := userService.postService.GetAllPostsByUserId(id.Id)
 	if err != nil {
 		return &pb.GetUserPostsResponse{
 			Status: http.StatusInternalServerError,

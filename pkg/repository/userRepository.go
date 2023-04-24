@@ -117,12 +117,12 @@ func (userRepo *UserRepository) GiveRole(username string) error {
 	return err
 }
 
-func (userRepo *UserRepository) GetUserIdByUsername(username string) (int, error) {
-	var userId int
+func (userRepo *UserRepository) GetUserIdByUsername(username string) (models.User, error) {
+	var user models.User
 
-	query := fmt.Sprintf(`select u.user_id from %s u where u.username=$1`, usersTable)
+	query := fmt.Sprintf(`select * from %s u where u.username=$1`, usersTable)
 
-	err := userRepo.db.Get(&userId, query, username)
+	err := userRepo.db.Get(&user, query, username)
 
-	return userId, err
+	return user, err
 }
