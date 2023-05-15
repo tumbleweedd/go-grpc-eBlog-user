@@ -3,7 +3,7 @@ package repository
 import (
 	"fmt"
 	"github.com/jmoiron/sqlx"
-	"github.com/tumbleweedd/grpc-eBlog/grpc-eBlog-user/pkg/models"
+	"github.com/tumbleweedd/grpc-eBlog/grpc-eBlog-user/internal/models"
 	"strings"
 )
 

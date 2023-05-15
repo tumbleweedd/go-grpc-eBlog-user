@@ -5,9 +5,9 @@ import (
 	"crypto/sha1"
 	"fmt"
 	"github.com/tumbleweedd/grpc-eBlog/grpc-eBlog-user/client"
-	"github.com/tumbleweedd/grpc-eBlog/grpc-eBlog-user/pb"
-	"github.com/tumbleweedd/grpc-eBlog/grpc-eBlog-user/pkg/models"
-	"github.com/tumbleweedd/grpc-eBlog/grpc-eBlog-user/pkg/repository"
+	"github.com/tumbleweedd/grpc-eBlog/grpc-eBlog-user/internal/models"
+	"github.com/tumbleweedd/grpc-eBlog/grpc-eBlog-user/internal/repository"
+	"github.com/tumbleweedd/grpc-eBlog/grpc-eBlog-user/pkg/pb"
 	"net/http"
 	"strings"
 )

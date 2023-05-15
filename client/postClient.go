@@ -3,13 +3,13 @@ package client
 import (
 	"context"
 	"fmt"
-	"github.com/tumbleweedd/grpc-eBlog/grpc-eBlog-user/pb"
+	pb2 "github.com/tumbleweedd/grpc-eBlog/grpc-eBlog-user/pkg/pb"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 )
 
 type PostServiceClient struct {
-	Client pb.PostServiceClient
+	Client pb2.PostServiceClient
 }
 
 func InitPostServiceClient(url string) PostServiceClient {
@@ -19,13 +19,13 @@ func InitPostServiceClient(url string) PostServiceClient {
 	}
 
 	c := PostServiceClient{
-		Client: pb.NewPostServiceClient(cc),
+		Client: pb2.NewPostServiceClient(cc),
 	}
 
 	return c
 }
-func (c *PostServiceClient) GetAllPostsByUserId(userId int) (*pb.GetAllPostsByUserIdResponse, error) {
-	req := &pb.GetAllPostsByUserIdRequest{
+func (c *PostServiceClient) GetAllPostsByUserId(userId int) (*pb2.GetAllPostsByUserIdResponse, error) {
+	req := &pb2.GetAllPostsByUserIdRequest{
 		UserId: int64(userId),
 	}
 
